@@ -42,7 +42,7 @@ class Git(ABC):
  
     @abstractmethod
     def get_repository_license(self, repository_owner, repository_name):
-        pass
+        raise NotImplementedError
 
 
 class GitHub(Git, Repository):
