@@ -2,9 +2,9 @@ import os
 from re import search as rsearch
 from git import GitHub, GitLab
 
-class File_Manager():
 
-    FILE_NAMES = ('LICENSE','README.md')
+class FileManager():
+    FILE_NAMES = ('LICENSE', 'README.md')
     DIR_NAMES = ('.git')
     matches = set()
     repositories = set()
@@ -24,13 +24,14 @@ class File_Manager():
         for root, directories, _ in os.walk(self.path):
             for direct in directories:
                 if direct.endswith(self.DIR_NAMES):
-                    self.repositories.add(self.read_config(os.path.join(root, direct),'/config'))
+                    self.repositories.add(self.read_config(os.path.join(root, direct), '/config'))
 
     def lines_that_contain(self, string, fp):
         return [line for line in fp if string in line]
 
     def read_config(self, path_to_git_dir, file):
         with open(path_to_git_dir + file) as file:
-            url = rsearch(self.url_pattern,self.lines_that_contain('url', file)[0].strip()).group(0)
-            result = rsearch(self.repos_info_pattern,url).group(2).split('/')
-            return GitHub(result[2],result[1],url=url) if 'github' in rsearch(self.repos_info_pattern,url).group(1) else GitLab(result[2],result[1],url=url)
+            url = rsearch(self.url_pattern, self.lines_that_contain('url', file)[0].strip()).group(0)
+            result = rsearch(self.repos_info_pattern, url).group(2).split('/')
+            return GitHub(result[2], result[1], url=url) if 'github' in rsearch(self.repos_info_pattern, url).group(
+                1) else GitLab(result[2], result[1], url=url)
