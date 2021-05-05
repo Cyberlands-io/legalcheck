@@ -9,10 +9,13 @@ class LicenseChecker(FileManager):
         FileManager.__init__(FileManager, path_to_lib)
 
     def main(self):
-        self.get_repos_info()
-        for repos in self.repositories:
-            repos.rep_license = repos.get_repository_license(repos.owner, repos.name)
-            repos.print_license_data(repos)
+        try:
+            self.get_repos_info()
+            for repos in self.repositories:
+                repos.rep_license = repos.get_repository_license(repos.owner, repos.name)
+                repos.print_license_data(repos)
+        except AttributeError:
+            print("Attribute Error")
 
 
 if __name__ == '__main__':
