@@ -4,8 +4,8 @@ from git import GitHub, GitLab
 
 class File_Manager():
 
-    FILE_NAMES = ('LICENSE','README.md')
-    DIR_NAMES = ('.git')
+    FILE_NAME = 'LICENSE'
+    DIR_NAME = '.git'
     matches = set()
     repositories = set()
     repos_info_pattern = r'(?s)^.*(?<=(gitlab.com|github.com))(.*$)'
@@ -14,16 +14,18 @@ class File_Manager():
     def __init__(self, path_to_lib) -> None:
         self.path = path_to_lib
 
-    def find_license_and_readme_files(self):
+    def find_license_files(self):
+        licenses = set()
         for root, _, filenames in os.walk(self.path):
             for file in filenames:
-                if file.endswith(self.FILE_NAMES):
-                    print(os.path.join(root, file))
+                if file.endswith(self.FILE_NAME):
+                    licenses.add(os.path.join(root, file))
+        return licenses
 
     def get_repos_info(self):
         for root, directories, _ in os.walk(self.path):
             for direct in directories:
-                if direct.endswith(self.DIR_NAMES):
+                if direct.endswith(self.DIR_NAME):
                     self.repositories.add(self.read_config(os.path.join(root, direct),'/config'))
 
     def lines_that_contain(self, string, fp):
@@ -33,4 +35,4 @@ class File_Manager():
         with open(path_to_git_dir + file) as file:
             url = rsearch(self.url_pattern,self.lines_that_contain('url', file)[0].strip()).group(0)
             result = rsearch(self.repos_info_pattern,url).group(2).split('/')
-            return GitHub(result[2],result[1],url=url) if 'github' in rsearch(self.repos_info_pattern,url).group(1) else GitLab(result[2],result[1],url=url)
+            return GitHub(name = result[2],owner = result[1], url=url) if 'github' in rsearch(self.repos_info_pattern,url).group(1) else GitLab( name = result[2], owner = result[1],url=url)
