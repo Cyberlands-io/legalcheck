@@ -1,7 +1,8 @@
 from git import License, Repository
 import os
 import argparse
-from file_manager import File_Manager
+from filemanager import File_Manager
+
 
 class License_Checker(File_Manager):
 
@@ -25,7 +26,7 @@ class License_Checker(File_Manager):
 if __name__ == '__main__':
 
     # Get args
-    parser = argparse.ArgumentParser(prog='legal_check',usage='%(prog)s [options] libs separated by spaces')
+    parser = argparse.ArgumentParser(prog='legal_check', usage='%(prog)s [options] libs separated by spaces')
     parser.add_argument('lib', help='Path to libraries folder')
     parser.add_argument('-l', action='store_true', help='Get a local license file')
     args = parser.parse_args(['/Users/klaus/Downloads/test/legal_check/', '-l'])
@@ -33,5 +34,3 @@ if __name__ == '__main__':
     if os.path.isdir(args.lib):
         checker = License_Checker(args.lib)
         checker.main(args.l)
-
-        

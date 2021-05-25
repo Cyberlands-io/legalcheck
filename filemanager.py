@@ -3,7 +3,6 @@ from re import search as rsearch
 from git import GitHub, GitLab
 
 class File_Manager():
-
     FILE_NAME = 'LICENSE'
     DIR_NAME = '.git'
     matches = set()
