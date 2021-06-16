@@ -32,11 +32,23 @@ class File_Manager():
                 if direct.endswith(self.DIR_NAME):
                     self.repositories.add(self.read_config(os.path.join(root, direct)))
 
-    def lines_that_contain(self, string, fp):
-        return [line for line in fp if string in line]
+    @staticmethod
+    def parse_data(pattern, string, group_index):
+        try:
+            return rsearch(pattern,string).group(group_index)
+        except Exception as ex:
+            print(ex)
+
+    @staticmethod
+    def line_that_contain(string, fp):
+        return [line for line in fp if string in line][0].strip()
 
     def read_config(self, path_to_git_dir):
+
         with open(path_to_git_dir + self.CONFIG_FILE) as file:
-            url = rsearch(self.url_pattern,self.lines_that_contain('url', file)[0].strip()).group(0)
-            result = rsearch(self.repos_info_pattern,url).group(2).split('/')
-            return GitHub(name = result[2],owner = result[1], url=url) if 'github' in rsearch(self.repos_info_pattern,url).group(1) else GitLab( name = result[2], owner = result[1],url=url)
+            url = File_Manager.parse_data(self.url_pattern, File_Manager.line_that_contain('url', file), 0)
+            _, repository_owner, repository_name = File_Manager.parse_data(self.repos_info_pattern,url , 2).split('/')
+            
+            return GitHub(name = repository_name, owner = repository_owner, url=url) \
+                   if 'github' in File_Manager.parse_data(self.repos_info_pattern, url, 1) \
+                   else GitLab( name = repository_name, owner = repository_owner,url=url)
