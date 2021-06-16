@@ -243,7 +243,7 @@ in one of these ways:
     customarily used for software interchange.
 
     b) Convey the object code in, or embodied in, a physical product
-    (including a physical distribution medium), acfied by a
+    (including a physical distribution medium), accompanied by a
     written offer, valid for at least three years and valid for as
     long as you offer spare parts or customer support for that product
     model, to give anyone who possesses the object code either (1) a
@@ -633,8 +633,8 @@ the "copyright" line and a pointer to where the full notice is found.
     Copyright (C) {}  {}
 
     This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published
-    by the Free Software Foundation, either version 3 of the License, or
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
