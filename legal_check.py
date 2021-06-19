@@ -31,7 +31,7 @@ if __name__ == '__main__':
     parser.add_argument('lib', help='Path to libraries folder')
     parser.add_argument('-l', action='store_true', help='Get a local license file')
     args = parser.parse_args()
-    
+
     if os.path.isdir(args.lib):
         checker = License_Checker(args.lib, args.l)
         checker.main()

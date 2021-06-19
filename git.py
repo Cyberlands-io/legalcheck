@@ -23,9 +23,9 @@ class License():
         pattern = r"[\n\t\s]*"
         for f in os.listdir(License.TEMPLATES_PATH):
             with open(f'{License.TEMPLATES_PATH}/{f}','r') as template:
-                p = compile(re.sub(pattern, "",template.read()))
+                p = compile(re.sub(pattern, "",template.read().split('---')[0]))
                 with open(path_to_license_file,'r') as license_file:
-                    l = re.sub(pattern, "", license_file.read())              
+                    l = re.sub(pattern, "", license_file.read().split('---')[0])              
                     res = p.parse(l)
                     if res:
                         return GitHub.get_license_by_key(f[:-4])

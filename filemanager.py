@@ -4,7 +4,7 @@ from git import GitHub, GitLab
 
 class File_Manager():
 
-    LICENSE_FILE = 'LICENSE'
+    LICENSE_FILE = r'LICENSE*'
     DIR_NAME = '.git'
     CONFIG_FILE = '/config'
     repositories = set()
@@ -20,7 +20,7 @@ class File_Manager():
         licenses = set()
         for root, _, filenames in os.walk(self.path):
             for file in filenames:
-                if file.endswith(self.LICENSE_FILE):
+                if rsearch(self.LICENSE_FILE,file.rsplit(None, 1)[-1]):
                     licenses.add(os.path.join(root, file))
         return licenses
 
