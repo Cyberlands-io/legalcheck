@@ -86,7 +86,7 @@ class GitHub(Git, Repository):
 
     def get_repository_license(self, repository_owner, repository_name):
 
-        response = requests.get(f'https://api.github.com/repos/{repository_owner}/{repository_name}/license', headers={"Authorization": "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"})
+        response = requests.get(f'https://api.github.com/repos/{repository_owner}/{repository_name}/license')
         if response.status_code == 200:
             license_resp = requests.get(response.json()['license']['url']).json() if response.json()['license']['url'] else None
             return License(license_resp['name'], license_resp['permissions'], license_resp['conditions'],license_resp['limitations']) if license_resp else None
