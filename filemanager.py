@@ -17,19 +17,18 @@ class File_Manager():
 
     def __init__(self, path_to_lib) -> None:
         self.path = path_to_lib
-
         self.workbook = xlsxwriter.Workbook(self.FILE_RESULT)
         self.worksheet = self.workbook.add_worksheet()
-        self.worksheet.write_row(0, 0, self.sheet_titles)
+        self.worksheet.write_row(0, 0, self.sheet_titles, self.workbook.add_format({'bg_color': '#AAAAAA', 'bold': True, 'border': True, 'font_size' : '14'}))
         self.worksheet.set_column(0, len(self.sheet_titles), 25)
         
 
     def write_repository_data_to_file(self, **kwargs):
-
+        cell_format = self.workbook.add_format({'border': True})
         if kwargs.get('Repository_License'):
-            self.worksheet.write_row(kwargs.get('Index') + 1, 0, [kwargs.get('Name'), kwargs.get('Repository_License').name, '\n'.join(kwargs.get('Repository_License').permissions), '\n'.join(kwargs.get('Repository_License').conditions), '\n'.join(kwargs.get('Repository_License').limitations)])
+            self.worksheet.write_row(kwargs.get('Index') + 1, 0, [kwargs.get('Name'), kwargs.get('Repository_License').name, '\n'.join(kwargs.get('Repository_License').permissions), '\n'.join(kwargs.get('Repository_License').conditions), '\n'.join(kwargs.get('Repository_License').limitations)],cell_format)
         else:
-            self.worksheet.write(kwargs.get('Index') + 1, 0, kwargs.get('Name'))
+            self.worksheet.write(kwargs.get('Index') + 1, 0, kwargs.get('Name'),cell_format)
 
     
     # For local search
