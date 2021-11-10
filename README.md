@@ -1,17 +1,21 @@
-# legal-check
-CyberLands legal check tool
+# [Сyberlands](https://cyberlands.io) Legal Check
+Cyberlands open-source license validation tool which allows to check licensing for used packages, as result tool generates a xls file with information about repositories in the target forder and their liceses.
 
-Install:
-    Clone the repository
+## Install:
+  ```
+  git clone https://github.com/Cyberlands-io/legal-check.git
+  pip install -r requirements.txt
+  ```
 
-Run:
-    python3 legal_check.py <path_to_cloned_libs>
+## Usage:
+  ```
+  python3 legal_check.py --lib <path_to_cloned_libs>
+  open res.xls
+  ```
     
-File parameters:
+**Arguments:**  
+    ```--lib``` - Path to libraries folder
 
-positional arguments:
-  lib         Path to libraries folder
-
-optional arguments:
-  -h, --help  show this help message and exit
-  -l          Get a local license file
+**Optional arguments:**  
+  ```-h, --help``` - Show this help message and exit  
+  ```-l``` - Get a local license file

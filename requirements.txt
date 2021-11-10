@@ -2,3 +2,6 @@ requests
 colorama
 parse
 xlsxwriter
+semantic_version
+toml
+progress
