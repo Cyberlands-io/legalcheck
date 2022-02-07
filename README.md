@@ -71,7 +71,7 @@ This tool is developed in collaboration with [DigiLaw](https://digilaw.pro/) com
 * mpl 2.0
 
 ## Sample output
-```
+```bash
 python legal_check.py --lib /tmp/legal-check-test -oC
 Get Remote licenses
 
