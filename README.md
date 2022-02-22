@@ -1,5 +1,5 @@
-# [Сyberlands.io](https://cyberlands.io) Legal Check
-Cyberlands open-source license validation tool which allows to check licensing for used packages, as result tool generates a xls file with information about repositories in the target forder and their liceses.
+# [Сyberlands.io](https://cyberlands.io) LegalCheck
+Cyberlands open source license validation tool which allows to check licensing for used packages, as result tool generates a xls file with information about repositories in the target forder and their liceses.
 
 This tool is developed in collaboration with [DigiLaw](https://digilaw.pro/) company
 
@@ -62,7 +62,7 @@ This tool is developed in collaboration with [DigiLaw](https://digilaw.pro/) com
 * bsd 2-clause
 * bsd 3-clause
 * bsl 1.0
-* cc0 1.0
+* creative commons 1.0
 * epl 2.0
 * gpl 2.0
 * gpl 3.0
